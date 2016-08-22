@@ -1,0 +1,161 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Security.Cryptography;
+using System.IO;
+using System.Text;
+using System.Data;
+
+namespace test1
+{
+    public partial class ChangePassword : System.Web.UI.Page
+    {
+        byte up;
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+        private string Encrypt(string clearText)
+        {
+            string EncryptionKey = "MAKV2SPBNI99212";
+            //string EncryptionKey = "************";
+            byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(clearBytes, 0, clearBytes.Length);
+                        cs.Close();
+                    }
+                    clearText = Convert.ToBase64String(ms.ToArray());
+                }
+            }
+            return clearText;
+        }
+        protected void btnsave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (txtcurrpwd.Text == "")
+                {
+                    Response.Write("<script>alert('Fill required Information')</script>");
+                    txtcurrpwd.Focus();
+                }
+                else if (txtnewpwd.Text == "")
+                {
+                    Response.Write("<script>alert('Fill required Information')</script>");
+                    txtnewpwd.Focus();
+                }
+                else
+                {
+                    SqlConnection con = new SqlConnection();
+                    con.ConnectionString = ConfigurationManager.ConnectionStrings["EasyTaskConnectionString"].ConnectionString;
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("select UserLoginPassword from UserInfo where UserLoginPassword='" + Encrypt(txtcurrpwd.Text) + "'", con);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable table = new DataTable();
+                    da.Fill(table);
+                    if (table.Rows.Count>0)
+                    {
+                        SqlCommand cmdd = new SqlCommand("UPDATE UserInfo SET UserLoginPassword='" + Encrypt(txtnewpwd.Text) + "'where UserLoginId='" + ddlusername.Text + "' ", con);
+                        {
+                            Response.Write("<script>alert('Password updated succesfully')</script>");
+                            txtcurrpwd.Text = "";
+                            txtnewpwd.Text = "";
+                            ddlusername.SelectedIndex = -1;
+                        }
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('Execution Error')</script>");
+
+                    }
+                    //SqlConnection con = new SqlConnection();
+                    //con.ConnectionString = ConfigurationManager.ConnectionStrings["EasyTaskConnectionString"].ConnectionString;
+                    //con.Open();
+                    //SqlDataAdapter da = new SqlDataAdapter("select * from UserInfo where UserLoginId='" + ddlusername.Text + "'AND UserLoginPassword='"+Encrypt(txtcurrpwd.Text)+"'", con);
+                    //DataSet ds = new DataSet();
+                    //da.Fill(ds);
+                    //con.Close();
+                    //if (txtcurrpwd.Text != txtnewpwd.Text)
+                    //{
+                    //    con.Open();
+                    //    SqlCommand cmdd = new SqlCommand("UPDATE UserInfo SET UserLoginPassword='" + Encrypt(txtnewpwd.Text) + "'where UserLoginId='" + ddlusername.Text + "' ", con);
+                    //    int querystatus = cmdd.ExecuteNonQuery();
+                    //    if (querystatus > 0)
+                    //    {
+                    //        Response.Write("<script>alert('Password updated succesfully')</script>");
+                    //        txtcurrpwd.Text = "";
+                    //        txtnewpwd.Text = "";
+                    //        ddlusername.SelectedIndex = -1;
+                    //    }
+                    //    else
+                    //    {
+                    //        Response.Write("<script>alert('Execution Error')</script>");
+                    //    }
+
+                    //}
+                    //else
+                    //{
+                    //    Response.Write("<script>alert('New Password Match with Current Password')</script>");
+                    //}
+
+
+                    //SqlConnection con = new SqlConnection();
+                    //con.ConnectionString = ConfigurationManager.ConnectionStrings["EasyTaskConnectionString"].ConnectionString;
+                    //con.Open();
+                    //string str = "select UserLoginPassword from UserInfo";
+                    //SqlCommand com = new SqlCommand(str, con);
+                    //SqlDataReader reader = com.ExecuteReader();
+                    //while (reader.Read())
+                    //{
+                    //    if (txtcurrpwd.Text != txtnewpwd.Text)
+                    //    {
+                    //        up = 1;
+                    //    }
+
+
+                    //}
+                    //reader.Close();
+                    //con.Close();
+                    //if (up == 1)
+                    //{
+                    //    con.Open();
+                    //    SqlCommand cmdd = new SqlCommand("UPDATE UserInfo SET UserLoginPassword='" + Encrypt(txtnewpwd.Text) + "'where UserLoginId='" + ddlusername.Text + "' ", con);
+                    //    cmdd.ExecuteNonQuery();
+                    //    con.Close();
+                    //    Response.Write("<script>alert('Data Succesfully Recorded')</script>");
+                    //    txtcurrpwd.Text = "";
+                    //    txtnewpwd.Text = "";
+                    //    ddlusername.SelectedIndex = -1;
+                    //}
+                    //else
+                    //{
+                    //    Response.Write("<script>alert('New Password Match with Current Password')</script>");
+                    //}
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        protected void btncancel_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
