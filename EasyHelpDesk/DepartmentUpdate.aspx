@@ -8,8 +8,9 @@
     <style>
         body{
                 background:rgb(12, 97, 33);
-           background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+           /*background-repeat: no-repeat;
+    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+           background:#f8f8f8;
             height:100%;
         }
         .head{
@@ -74,7 +75,7 @@
 <body>
     <div id="head" class="head">
         Department Master Update
-        <strong class="session"><%=Session["UId"].ToString() %></strong>
+        <strong class="session"><%=Session["TUID"].ToString() %></strong>
         <br />
         <br />
         <br />
@@ -111,16 +112,16 @@
         <br />
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="txtdeptcat" runat="server" Width="259px" Height="30px" Font-Size="25px" AutoPostBack="true" ReadOnly="True" ></asp:TextBox>
-        <br />
+        <%--<br />
         <br />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:DropDownList ID="ddllocation" DataSourceID="location" DataTextField="LocationName" DataValueField="LocationID" runat="server" ToolTip="select the Location" CssClass="infot" Width="268px" Height="30px">
+        <asp:DropDownList ID="ddllocation" DataSourceID="location" DataTextField="LocationName" DataValueField="LocationID" runat="server" ToolTip="select the Location" CssClass="infot" Width="268px" Height="30px" AutoPostBack="True">
             <asp:ListItem Value="0">Select</asp:ListItem>
         </asp:DropDownList>
         <br />
         <br />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-        <asp:TextBox ID="txtlocation" runat="server" Width="259px" Height="30px" Font-Size="25px" AutoPostBack="true" ReadOnly="True"></asp:TextBox>
+        <asp:TextBox ID="txtlocation" runat="server" Width="259px" Height="30px" Font-Size="25px" AutoPostBack="true" ReadOnly="True"></asp:TextBox>--%>
         <br />
         <br />
         <asp:CheckBox ID="cbactive" Text="Inactive Department" CssClass="infoc" ToolTip="To keep inactive Department" runat="server" />

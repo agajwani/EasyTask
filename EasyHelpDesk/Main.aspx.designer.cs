@@ -40,6 +40,33 @@ namespace EasyHelpDesk {
         protected global::System.Web.UI.WebControls.Button mbhis;
         
         /// <summary>
+        /// imgbtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton imgbtn;
+        
+        /// <summary>
+        /// tadblogout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton tadblogout;
+        
+        /// <summary>
+        /// imgbtnmaster control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton imgbtnmaster;
+        
+        /// <summary>
         /// Reqdetails control.
         /// </summary>
         /// <remarks>
@@ -47,6 +74,24 @@ namespace EasyHelpDesk {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Reqdetails;
+        
+        /// <summary>
+        /// ddldept control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddldept;
+        
+        /// <summary>
+        /// Mdept control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource Mdept;
         
         /// <summary>
         /// DDlTicketType control.
@@ -103,22 +148,22 @@ namespace EasyHelpDesk {
         protected global::System.Web.UI.WebControls.SqlDataSource mlocation;
         
         /// <summary>
-        /// ddldept control.
+        /// ddlsubloc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddldept;
+        protected global::System.Web.UI.WebControls.DropDownList ddlsubloc;
         
         /// <summary>
-        /// Mdept control.
+        /// rtextno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource Mdept;
+        protected global::System.Web.UI.WebControls.TextBox rtextno;
         
         /// <summary>
         /// rtcno control.
@@ -157,6 +202,15 @@ namespace EasyHelpDesk {
         protected global::System.Web.UI.WebControls.Button rbcancel;
         
         /// <summary>
+        /// rsclr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button rsclr;
+        
+        /// <summary>
         /// tickethist control.
         /// </summary>
         /// <remarks>
@@ -164,15 +218,6 @@ namespace EasyHelpDesk {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tickethist;
-        
-        /// <summary>
-        /// txtticketno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtticketno;
         
         /// <summary>
         /// ddlstatus control.
@@ -184,13 +229,22 @@ namespace EasyHelpDesk {
         protected global::System.Web.UI.WebControls.DropDownList ddlstatus;
         
         /// <summary>
-        /// txtcontains control.
+        /// txtticketno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtcontains;
+        protected global::System.Web.UI.WebControls.TextBox txtticketno;
+        
+        /// <summary>
+        /// Ticstats control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource Ticstats;
         
         /// <summary>
         /// rbsearch control.
@@ -229,12 +283,12 @@ namespace EasyHelpDesk {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
         
         /// <summary>
-        /// ddlpage control.
+        /// Tichistcan control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlpage;
+        protected global::System.Web.UI.WebControls.Button Tichistcan;
     }
 }

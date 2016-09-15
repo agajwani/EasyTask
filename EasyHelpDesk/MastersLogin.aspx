@@ -146,6 +146,20 @@ a:hover {
             /*text-align: right;*/
             padding: 50px;
         }
+         #Footer{
+            margin-top:33.5%;
+            color:antiquewhite;
+            height:46px;
+            width:100%;
+            vertical-align:bottom;
+            background-repeat:repeat-x;
+            background:#999;
+        }
+        #footerleft{
+            padding-left:20px;
+            padding-top:10px;
+            float:left; 
+        }
    
     </style>
     <%-- <script type="text/javascript">
@@ -190,6 +204,11 @@ a:hover {
             <a class="forgot" href="ForgetPassword.aspx">Forgot Password</a><%--</>--%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="usblogin" runat="server" Text="Login" CssClass="usbinfo" Width="112px" ToolTip="Login" OnClick="usblogin_Click"/>
         </div>
+        <div id ="Footer" >
+            <div id="footerleft">
+                <a href="#">Help Desk Software</a>
+                "© 2016 Medstream Technologies"
+            </div>
 	   </form>
     
 </body>

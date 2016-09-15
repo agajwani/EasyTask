@@ -39,7 +39,7 @@ namespace test1
                 SqlConnection conncection = new SqlConnection();
                 conncection.ConnectionString = ConfigurationManager.ConnectionStrings["easytaskconnectionstring"].ConnectionString;
                 conncection.Open();
-                SqlCommand cmd = new SqlCommand("Insert into TickettypeHeader (Tcktyp,ActionUserId,ActionMenuCode,ActionDate,documentdate) values('" + txttype.Text + "','" + Session["Uid"].ToString() + "','" + uri.Text + "','" + System.DateTime.Now + "','" + DateTime.Now + "')", conncection);
+                SqlCommand cmd = new SqlCommand("Insert into TickettypeHeader (Tcktyp,ActionUserId,ActionMenuCode,ActionDate,documentdate) values('" + txttype.Text + "','" + Session["TUID"].ToString() + "','" + uri.Text + "','" + System.DateTime.Now + "','" + DateTime.Now + "')", conncection);
                 cmd.ExecuteNonQuery();
                 conncection.Close();
                 txttype.Text = "";

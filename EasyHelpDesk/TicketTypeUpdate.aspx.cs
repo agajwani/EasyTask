@@ -31,14 +31,14 @@ namespace test1
             connection.Open();
             if(txtmodtype.Text=="")
             {
-                SqlCommand cbcmd = new SqlCommand("Update TickettypeHeader set activestatus = '" + active + "',Actionuserid = '" + Session["Uid"].ToString() + "',Actionmenucode='" + uri.Text + "',Actiondate='" + System.DateTime.Now + "' where Tcktyp='"+ddltype.Text+"'", connection);
+                SqlCommand cbcmd = new SqlCommand("Update TickettypeHeader set activestatus = '" + active + "',Actionuserid = '" + Session["TUID"].ToString() + "',Actionmenucode='" + uri.Text + "',Actiondate='" + System.DateTime.Now + "' where Tcktyp='"+ddltype.Text+"'", connection);
                 cbcmd.ExecuteNonQuery();
                 Response.Write("<script>alert('Update Successfull')</script>");
                 Response.Redirect("Tickettypeupdate.aspx");
             }
             else
             {
-                SqlCommand cmd = new SqlCommand("Update TickettypeHeader Set Tcktyp='" + txtmodtype.Text + "', activestatus = '" + active + "',Actionuserid = '" + Session["Uid"].ToString() + "',Actionmenucode='" + uri.Text + "',Actiondate='" + System.DateTime.Now + "' where Tcktyp='" + ddltype.Text + "'", connection);
+                SqlCommand cmd = new SqlCommand("Update TickettypeHeader Set Tcktyp='" + txtmodtype.Text + "', activestatus = '" + active + "',Actionuserid = '" + Session["TUID"].ToString() + "',Actionmenucode='" + uri.Text + "',Actiondate='" + System.DateTime.Now + "' where Tcktyp='" + ddltype.Text + "'", connection);
                 if(txtmodtype.Text != "")
                 {
                     cmd.ExecuteNonQuery();

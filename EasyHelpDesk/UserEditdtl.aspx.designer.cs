@@ -193,6 +193,24 @@ namespace EasyHelpDesk {
         protected global::System.Web.UI.WebControls.TextBox uetdesg;
         
         /// <summary>
+        /// ddldeptrole control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddldeptrole;
+        
+        /// <summary>
+        /// urcsr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox urcsr;
+        
+        /// <summary>
         /// urtmno1 control.
         /// </summary>
         /// <remarks>

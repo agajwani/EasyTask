@@ -7,10 +7,11 @@
     <title>Salutation Master</title>
     <style>
        body{
-            background:rgb(12, 97, 33);
+            /*background:rgb(12, 97, 33);
            background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
             height:100%;
+            background:#f8f8f8;
        }
         #back{
             
@@ -64,7 +65,7 @@
 </head>
 <body>
    <div id="back" class="back"><asp:Label ID="usercode" runat="server" Text="SalutationMaster" Font-Bold="true"></asp:Label>
-       <strong class="session"><%=Session["Uid"].ToString() %></strong>
+       <strong class="session"><%=Session["TUID"].ToString() %></strong>
    </div>
      
     <br />

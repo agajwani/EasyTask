@@ -196,6 +196,17 @@ li.dropdown {
 .dropdown-content a:hover {background-color: #f1f1f1}
         }
         .show {display:block;}
+         .Cimg{
+            float:right;
+            margin-right:3%;
+            margin-top:1px;
+            border-bottom-left-radius:2px;
+            border-bottom-right-radius:2px;
+            border-top-left-radius:2px;
+            border-top-right-radius:2px;
+            height:45px;
+            
+        }
     </style>
     <script type="text/javascript">
         history.forward();
@@ -230,7 +241,9 @@ function pfg() {
 function logout() {
     document.getElementById("lg").classList.toggle("show");
 }
-
+function comp() {
+    document.getElementById("cm").classList.toggle("show");
+}
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(e) {
   if (!e.target.matches('.dropbtn')) {
@@ -255,7 +268,9 @@ window.onclick = function(e) {
         <div id="Label" class="InfoLabel">
         <asp:Panel ID="Panel1" runat="server" BorderStyle="Solid" >
         <asp:Label ID="Master1" runat="server" Text="EasyTask Master"  Font-Bold="True" Font-Names="Calibri (Body)" Font-Size="35px" ForeColor="White" CssClass="Info" ></asp:Label>
-          <strong style="background:border-box" class="session" > <%=Session["UID"].ToString() %> </strong>  
+          <strong style="background:border-box" class="session" > <%=Session["TUID"].ToString() %> </strong>  
+        <asp:ImageButton ID="tadblogout" CssClass="Cimg" ToolTip="Click To Logout" ImageUrl="~/images/Logout-icon.png" runat="server"  OnClick="tadblogout_Click"/>
+                   
         </asp:Panel>
         </div>
         <br />
@@ -286,6 +301,7 @@ window.onclick = function(e) {
                  <li class="dropdown"><a href="javascript:void(0)" class="dropbtn" onclick="locdrpdwm()">&nbsp;&nbsp;Location</a>
                      <div class="dropdown-content" id="loc">
                          <a href="LocationMaster.aspx">Location Master</a>
+                         <a href ="SublocationMaster.aspx">Sub Location Master</a>
                      </div>
                  </li>
                  <li class="dropdown"><a href="javascript:void(0)" class="dropbtn" onclick="desgdrpdwm()">&nbsp;&nbsp;Designation</a>
@@ -311,18 +327,25 @@ window.onclick = function(e) {
                         <a href="TicketStatus.aspx">Ticket Status Masters</a>
                     </div>
                 </li>
-                <li class="dropdown">
+               <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn" onclick="comp()">Comapny Master</a>
+                    <div class="dropdown-content" id="cm">
+                        <a href="Company.aspx">Insert Comapny Details</a>
+                    </div>
+                </li>
+                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn" onclick="pfg()">&nbsp;Forget Password</a>
                     <div class="dropdown-content" id="pf">
                         <a href="ForgetPassword.aspx">Password Retrieve </a>
                     </div>
                 </li>
-                <li class="dropdown">
+                
+                <%--<li class="dropdown">
                     <a href ="MastersLogin.aspx" class="dropbtn" onclick="logout()">&nbsp;Logout</a>
                     <div class="dropdown-content" id ="lg">
                         
                     </div>
-                </li>
+                </li>--%>
             </ul>
           </div>
   </div> 

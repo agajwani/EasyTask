@@ -43,7 +43,7 @@
             border-bottom-right-radius:10px;
             border-top-left-radius:10px;
             border-top-right-radius:10px;
-            height:115px;
+            height:135px;
             color:black;
             /*font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;*/
             font-size:18px;
@@ -112,8 +112,8 @@
                     <asp:ListItem Value="UserEmailId">Email Id</asp:ListItem>
                     <asp:ListItem Value="UserLoginId">Username</asp:ListItem>
                     <asp:ListItem Value="UserIsLocked">Locked User</asp:ListItem>
-                    <asp:ListItem Value="DocumentDate">Created Date</asp:ListItem>
-                    <asp:ListItem Value="ActiveStatus">Active Status</asp:ListItem>
+                    <%--<asp:ListItem Value="UserInfo.DocumentDate">Created Date</asp:ListItem>--%>
+                    <asp:ListItem Value="UserInfo.ActiveStatus">Active Status</asp:ListItem>
                 </asp:DropDownList>
             
 
@@ -135,14 +135,14 @@
             </div>
             <br />
             <asp:GridView ID="vgdv" runat="server" AllowPaging="True" OnRowCreated="vgdv_RowCreated" OnPageIndexChanging="vgdv_PageIndexChanging" OnRowCommand="vgdv_RowCommand">
-                <Columns>
+                <%--<Columns>
                     <asp:TemplateField HeaderText="Select">
                         <ItemTemplate>
                         <asp:linkbutton id="linkbutton1" runat="server" text="Edit"  ForeColor="GhostWhite" postbackurl='<%#"~/usereditdtl.aspx?id="+Eval("username") %>'></asp:linkbutton>
                         </ItemTemplate>
                     </asp:TemplateField>
                     
-                </Columns>
+                </Columns>--%>
                 <HeaderStyle BackColor="#CA5100" BorderColor="White" BorderStyle="Groove" />
                 <RowStyle BorderStyle="Solid" />
             </asp:GridView>

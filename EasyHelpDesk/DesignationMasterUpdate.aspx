@@ -7,9 +7,10 @@
     <title>Designation Master</title>
     <style>
         body{
-            background:rgb(12, 97, 33);
+            /*background:rgb(12, 97, 33);
            background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+            background:#f8f8f8;
             height:100%;
             
 
@@ -80,7 +81,7 @@
 <body>
     <div id="back" class="back">
     <asp:Label ID="lbldesgi" Text="Designation Master Update" runat="server" Font-Bold="true"></asp:Label>
-        <strong class="session"><%=Session["UId"].ToString() %></strong>
+        <strong class="session"><%=Session["TUID"].ToString() %></strong>
     </div>
     <form id="form1" runat="server">
     <div>

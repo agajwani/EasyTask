@@ -8,9 +8,10 @@
     <style>
         body{
              height: 100%;
-             background-repeat: no-repeat;
+             /*background-repeat: no-repeat;
              background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
-             background-color:rgb(12, 97, 33);
+             background-color:rgb(12, 97, 33);*/
+             background:#f8f8f8;
         }
         .head{
              padding:15px;
@@ -82,6 +83,13 @@
 }
     </style>
     <script type="text/javascript">
+        function NumberOnly() {
+            var AsciiValue = event.keyCode
+            if ((AsciiValue >= 48 && AsciiValue <= 57) || (AsciiValue == 8 || AsciiValue == 127))
+                event.returnValue = true;
+            else
+                event.returnValue = false;
+        }
         history.forward();
 </script>
     
@@ -91,7 +99,7 @@
     <form id="form1" runat="server">
    <div id="head" class="head">
     User Edit View
-       <strong class="session"><%=Session["uid"].ToString() %></strong>
+       <strong class="session"><%=Session["TUID"].ToString() %></strong>
     </div>
         <div id="ur" class="uri">
             <asp:Label ID="uri" runat="server" Text="Userdetailedit" Visible="false"></asp:Label>
@@ -151,16 +159,27 @@
             <asp:SqlDataSource ID="uedesgds" runat="server" ConnectionString="<%$ ConnectionStrings:EasyTaskConnectionString %>" SelectCommand="SELECT [DesignationId], [DesignationName] FROM [Designation]"></asp:SqlDataSource>
              &nbsp;<asp:TextBox ID="uetdesg0" runat="server" CssClass="infot" Width="176px" ReadOnly="True"></asp:TextBox>
              &nbsp;<asp:TextBox ID="uetdesg" runat="server" CssClass="deptcss" Width="99px" ReadOnly="True"></asp:TextBox>
+            <br />
+            <br />
+            <br />
+            Defalult Role &nbsp;&nbsp; <asp:DropDownList ID="ddldeptrole" CssClass="infot" Width="237px" runat="server">
+                <asp:ListItem>Select</asp:ListItem>
+                <asp:ListItem>Requester</asp:ListItem>
+                <asp:ListItem>Service Agent</asp:ListItem>
+                <asp:ListItem>Departmental Manager</asp:ListItem>
+                <asp:ListItem>Global Manager</asp:ListItem>
+            </asp:DropDownList>
+             &nbsp;&nbsp;&nbsp; <asp:CheckBox ID="urcsr" runat="server" Text="Allow To Switch Role" ToolTip="Allow Master Login" />
              <br />
             <br />
             <br />
-            Mobile No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="urtmno1" CssClass="infot"  ToolTip="Fill Your Mobile Number" runat="server" TextMode="Phone"></asp:TextBox>
-            &nbsp; Mobile No2 <asp:TextBox ID="urtmno2" CssClass="infot"  ToolTip="Fill Your Mobile Number" runat="server" TextMode="Phone"></asp:TextBox>
+            Mobile No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="urtmno1" CssClass="infot"  ToolTip="Fill Your Mobile Number" onkeypress="NumberOnly()" MaxLength="12" runat="server" TextMode="Phone"></asp:TextBox>
+            &nbsp; Extn No <asp:TextBox ID="urtmno2" CssClass="infot"  ToolTip="Fill Your Mobile Number" runat="server" onkeypress="NumberOnly()" MaxLength="12" TextMode="Phone"></asp:TextBox>
             <br />
             <br />
             <br />
-            Phone No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="urtph1" CssClass="infot"  ToolTip="Fill Your Phone Number" runat="server" TextMode="Phone"></asp:TextBox>
-            &nbsp; Phone No2&nbsp; <asp:TextBox ID="urtph2" CssClass="infot"  ToolTip="Fill Your Phone Number" runat="server" TextMode="Phone"></asp:TextBox>
+            Phone No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="urtph1" CssClass="infot"  ToolTip="Fill Your Phone Number" onkeypress="NumberOnly()" MaxLength="12" runat="server" TextMode="Phone"></asp:TextBox>
+            &nbsp; Phone No2&nbsp; <asp:TextBox ID="urtph2" CssClass="infot"  ToolTip="Fill Your Phone Number" runat="server" onkeypress="NumberOnly()" MaxLength="12" TextMode="Phone"></asp:TextBox>
            <br />
             <br />
             <br />

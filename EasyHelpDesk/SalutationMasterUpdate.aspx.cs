@@ -28,7 +28,7 @@ public partial class SalutationMasterUpdate : System.Web.UI.Page
             SqlConnection con = new SqlConnection();
             con.ConnectionString = ConfigurationManager.ConnectionStrings["EasyTaskConnectionString"].ConnectionString;
             con.Open();
-            SqlCommand cmd = new SqlCommand("Update SalutationHeader SET SalutationName='" + txtmodifiedsalutation.Text + "',ActiveStatus='" + allowas + "',ActionDate='" + DateTime.Now + "',ActionMenucode = '" + uri.Text + "',ActionUSerId = '" + Session["uid"] + "' WHERE SalutationName='" + ddlsalutation.Text + "' ", con);
+            SqlCommand cmd = new SqlCommand("Update SalutationHeader SET SalutationName='" + txtmodifiedsalutation.Text + "',ActiveStatus='" + allowas + "',ActionDate='" + DateTime.Now + "',ActionMenucode = '" + uri.Text + "',ActionUSerId = '" + Session["TUID"] + "' WHERE SalutationName='" + ddlsalutation.Text + "' ", con);
             cmd.ExecuteNonQuery();
             con.Close();
             txtmodifiedsalutation.Text = "";
@@ -37,6 +37,7 @@ public partial class SalutationMasterUpdate : System.Web.UI.Page
             // txtmodify.Text = "";
             cbactive.Checked = false;
             Response.Write("<script>alert('Update Succesfully')</script>");
+            con.Close();
         }
     }
 
@@ -59,6 +60,6 @@ public partial class SalutationMasterUpdate : System.Web.UI.Page
             cbactive.Checked = Convert.ToBoolean(Convert.ToInt32(table.Rows[0]["ActiveStatus"].ToString()));
             ddlgender.Text = table.Rows[0]["GenderCode"].ToString();
         }
-        
+        connection.Close();
     }
 }

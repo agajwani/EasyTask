@@ -8,9 +8,10 @@
     <style>
        body{
            height: 100%;
-             background-repeat: no-repeat;
-             background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
-             background-color:rgb(12, 97, 33);
+             /*background-repeat: no-repeat;
+             background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+             /*background-color:rgb(12, 97, 33);*/
+             background:#f8f8f8;
        }
        .head{
            padding:15px;
@@ -78,7 +79,7 @@
     <form id="form1" runat="server">
     <div id="head" class="head">
         <asp:Label ID="Department" Text="Department Master" runat="server" Font-Bold="true"></asp:Label>
-        <strong class="session"><%=Session["Uid"].ToString() %></strong>
+        <strong class="session"><%=Session["TUID"].ToString() %></strong>
         <br />
         <br />
         <br />
@@ -99,11 +100,11 @@
              <asp:ListItem>Medical</asp:ListItem>
         </asp:DropDownList> &nbsp;<br />
         <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;
+       <%-- &nbsp;&nbsp;&nbsp;&nbsp;
         Location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:DropDownList ID="ddllocation" DataSourceID="location" DataTextField="LocationName" DataValueField="LocationID" CssClass="infot" runat="server" Width="265px" Height="30px" style="margin-left: 0px"></asp:DropDownList>
         <br />
-        <br />
+        <br />--%>
         <asp:Button ID="btnadd" runat="server" Text="Add" CssClass="button" ToolTip="Click here to Add" OnClick="btnadd_Click" />
         <asp:Button ID="btnedit" runat="server" Text="Edit" CssClass="button" ToolTip="Edit" OnClick="btnedit_Click" />
         <asp:Button ID="btncancel" runat="server" Text="Cancel" CssClass="button" ToolTip="Click here to Cancel" OnClick="btncancel_Click" />

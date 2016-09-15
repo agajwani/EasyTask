@@ -15,9 +15,10 @@
             margin:100px;
             padding:20px;
             height:100%;
-  background: rgb(12, 97, 33);
+  /*background: rgb(12, 97, 33);
    background-repeat:no-repeat;
-    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+  background:#f8f8f8;
   text-align:center
         }
         .info{
@@ -76,7 +77,7 @@
         <br />
         <br />
         
-        <strong> Username| <a class="Back" href="MastersLogin.aspx"><span>Back</span></a></strong>
+        <strong> Username| <a class="Back" href="Masters.aspx"><span>Back</span></a></strong>
         <br />
         <br />
 <asp:dropdownlist runat="server" ID="Fgduname" DataSourceID="fguname" DataTextField="UserLoginId" DataValueField="UserLoginId" CssClass="uinfo"></asp:dropdownlist>

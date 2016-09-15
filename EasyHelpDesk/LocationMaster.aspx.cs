@@ -37,7 +37,7 @@ namespace test1
                     con.ConnectionString = ConfigurationManager.ConnectionStrings["EasyTaskConnectionString"].ConnectionString;
                     con.Open();
                    // Response.Write("<script>alert('Details added successfully')</script>");
-                    SqlCommand cmd = new SqlCommand("insert into LocationHeader (LocationName,LocationCatg,ActionMenucode,ActionDate,DocumentDate,ActionUserId) VALUES('" + txtlocation.Text+"','"+txtloccat.Text+"','"+ Location.Text+"','"+System.DateTime.Now+"','"+System.DateTime.Now+"', '"+Session["Uid"]+"')",con);
+                    SqlCommand cmd = new SqlCommand("insert into LocationHeader (LocationName,LocationCatg,ActionMenucode,ActionDate,DocumentDate,ActionUserId) VALUES('" + txtlocation.Text+"','"+txtloccat.Text+"','"+ Location.Text+"','"+System.DateTime.Now+"','"+System.DateTime.Now+"', '"+Session["TUID"]+"')",con);
                     cmd.ExecuteNonQuery();
                     con.Close();
                     txtlocation.Text = "";

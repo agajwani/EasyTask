@@ -54,7 +54,25 @@ namespace EasyHelpDesk
             tcmd.Parameters.AddWithValue("@COMMAND", 0);
             tcmd.ExecuteNonQuery();
         }
-
+        public void response()
+        {
+            SqlConnection rcon = new SqlConnection();
+            rcon.ConnectionString = ConfigurationManager.ConnectionStrings["easytaskconnectionstring"].ConnectionString;
+            rcon.Open();
+            SqlCommand rcmd = new SqlCommand("Select Defaultrole from UserInfo where Userloginid = '" + Session["tuid"].ToString() + "'and Defaultrole='Service Agent'", rcon);
+            SqlDataAdapter radapter = new SqlDataAdapter(rcmd);
+            DataTable rtable = new DataTable();
+            radapter.Fill(rtable);
+            if (rtable.Rows.Count>0)
+            {
+                Response.Redirect("TicketAssignedDtl.aspx");
+            }
+            else
+            {
+                Response.Redirect("Main.aspx");
+            }
+            rcon.Close();
+        }
         protected void lbsign_Click1(object sender, EventArgs e)
         {
             SqlConnection connection = new SqlConnection();
@@ -67,7 +85,8 @@ namespace EasyHelpDesk
             if (table.Rows.Count > 0)
             {
                 logintrack();
-                Response.Redirect("Main.aspx");
+                response();
+                //Response.Redirect("Main.aspx");
             }
             else
             {

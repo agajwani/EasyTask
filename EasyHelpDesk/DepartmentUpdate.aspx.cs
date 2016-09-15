@@ -11,12 +11,12 @@ using System.Data;
 public partial class DepartmentUpdate : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
-    {
-        //if (!Page.IsPostBack)
+     {
+        //if (Page.IsPostBack==true)
         //{
         //    LoadOption();
-        //LoadOption2();
-       // }
+        //    LoadOption2();
+        //}
 
 
     }
@@ -27,34 +27,38 @@ public partial class DepartmentUpdate : System.Web.UI.Page
         SqlConnection conn = new SqlConnection();
         conn.ConnectionString = ConfigurationManager.ConnectionStrings["EasyTaskConnectionString"].ConnectionString;
         conn.Open();
-        SqlCommand cmd1 = new SqlCommand("Select * from Department where DeptName='" + ddldeptname.Text + "'", conn);
+        //SqlCommand cmd1 = new SqlCommand("Select * from Department where DeptName='" + ddldeptname.Text + "'", conn);
+        SqlCommand cmd1 = new SqlCommand ("SELECT lh.LocationName,dept.* FROM locationheader lh,dbo.Department dept INNER JOIN dbo.LocationHeader ON dbo.LocationHeader.LocationID = dept.ParentDeptId  where DeptName = '" + ddldeptname.Text + "'",conn);
+        //SqlCommand cmd2 = new SqlCommand("Select * from Locationheader.locationname where locationid")
         SqlDataAdapter adapter = new SqlDataAdapter(cmd1);
         adapter.Fill(Department);
       
             if (Department.Rows.Count > 0)
             {
-                txtdeptcat.Text = Department.Rows[0][("DeptCategory")].ToString();
+                txtdeptcat.Text = Department.Rows[0]["DeptCategory"].ToString();
+                //txtlocation.Text = Department.Rows[0]["LocationName"].ToString();
                // txtlocation.Text = Department.Rows[0]["ParentDeptId"].ToString();
                 //ddldepartcategory.Items.Add(Department.Rows[0][("DeptCategory")].ToString());
                 //ddllocation.Items.Add(Department.Rows[0][("ParentDeptId")].ToString());
                 cbactive.Checked = Convert.ToBoolean(Convert.ToInt32(Department.Rows[0][("ActiveStatus")].ToString()));
             }
+        conn.Close();
     }
-    private void LoadOption2()
-    {
-        DataTable loc = new DataTable();
-        SqlConnection connn = new SqlConnection();
-        connn.ConnectionString = ConfigurationManager.ConnectionStrings["EasyTaskConnectionString"].ConnectionString;
-        connn.Open();
-        SqlCommand cmd2 = new SqlCommand("Select * from LocationHeader where LocationID='" + ddllocation.Text+"'",connn);
-        SqlDataAdapter add = new SqlDataAdapter(cmd2);
-        add.Fill(loc);
-        if (loc.Rows.Count>0)
-        {
-            txtlocation.Text = loc.Rows[0]["LocationName"].ToString();
-        }
-
-    }
+    //private void LoadOption2()
+    //{
+    //    DataTable loc = new DataTable();
+    //    SqlConnection connn = new SqlConnection();
+    //    connn.ConnectionString = ConfigurationManager.ConnectionStrings["EasyTaskConnectionString"].ConnectionString;
+    //    connn.Open();
+    //    SqlCommand cmd2 = new SqlCommand("Select * from LocationHeader where LocationID='" + ddllocation.Text+"'",connn);
+    //    SqlDataAdapter add = new SqlDataAdapter(cmd2);
+    //    add.Fill(loc);
+    //    if (loc.Rows.Count>0)
+    //    {
+    //        txtlocation.Text = loc.Rows[0]["LocationName"].ToString();
+    //    }
+    //    connn.Close();
+    //}
 
     protected void btnupdate_Click(object sender, EventArgs e)
     {
@@ -63,11 +67,11 @@ public partial class DepartmentUpdate : System.Web.UI.Page
             Response.Write("<script>alert('Select Is Not an Valid Category Please Select correct Category.')</script>");
             ddldepartcategory.Focus();
         }
-        else if (ddllocation.SelectedValue == "0")
-        {
-            Response.Write("<script>alert('Select Is Not an Valid location Please Select correct Location.')</script>");
-            ddllocation.Focus();
-        }
+        //else if (ddllocation.SelectedValue == "0")
+        //{
+        //    Response.Write("<script>alert('Select Is Not an Valid location Please Select correct Location.')</script>");
+        //    ddllocation.Focus();
+        //}
         else if(txtmoddept.Text=="")
         {
             Response.Write("<script>alert('Modified Department Is Required, Please Fill Required Information.')</script>");
@@ -79,16 +83,17 @@ public partial class DepartmentUpdate : System.Web.UI.Page
             SqlConnection con = new SqlConnection();
             con.ConnectionString = ConfigurationManager.ConnectionStrings["EasyTaskConnectionString"].ConnectionString;
             con.Open();
-            SqlCommand cmd = new SqlCommand("Update Department SET DeptName='" + txtmoddept.Text + "',ActiveStatus='" + allowas + "',DeptCategory='"+ddldepartcategory.Text+ "',ParentDeptId='"+ddllocation.Text+"',ActionUserId='" + Session["UID"] + "',ActionMenucode='" + uri.Text + "',ActionDate='" + DateTime.Now + "' WHERE DeptName='" + ddldeptname.Text + "'", con);
+            SqlCommand cmd = new SqlCommand("Update Department SET DeptName='" + txtmoddept.Text + "',ActiveStatus='" + allowas + "',DeptCategory='"+ddldepartcategory.Text+ "',ActionUserId='" + Session["TUID"] + "',ActionMenucode='" + uri.Text + "',ActionDate='" + DateTime.Now + "' WHERE DeptName='" + ddldeptname.Text + "'", con);
             cmd.ExecuteNonQuery();
             con.Close();
             txtmoddept.Text = "";
             txtdeptcat.Text = "";
-            txtlocation.Text = "";
+            //txtlocation.Text = "";
             ddldepartcategory.SelectedIndex = -1;
             ddldeptname.SelectedIndex = -1;
-            ddllocation.SelectedIndex = -1;
+            //ddllocation.SelectedIndex = -1;
             Response.Write("<script>alert('Fill Data Updated Succesfully')  </script>");
+            con.Close();
         }
     }
     protected void btncancel_Click(object sender, EventArgs e)
@@ -99,7 +104,7 @@ public partial class DepartmentUpdate : System.Web.UI.Page
     protected void ddldeptname_SelectedIndexChanged(object sender, EventArgs e)
     {
         LoadOption();
-        LoadOption2();
+        //LoadOption2();
 
     }
 }

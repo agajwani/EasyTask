@@ -30,7 +30,7 @@ namespace test1
                 SqlConnection connection = new SqlConnection();
                 connection.ConnectionString = ConfigurationManager.ConnectionStrings["easytaskconnectionstring"].ConnectionString;
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("insert into TicketStatusHeader(Tckstatus,ActionUserId,ActionMenuCode,ActionDate,documentdate) values ('" + txtstatus.Text + "','" + Session["UID"].ToString() + "','" + uri.Text + "','" + DateTime.Now + "','" + DateTime.Now + "')", connection);
+                SqlCommand cmd = new SqlCommand("insert into TicketStatusHeader(Tckstatus,ActionUserId,ActionMenuCode,ActionDate,documentdate) values ('" + txtstatus.Text + "','" + Session["TUID"].ToString() + "','" + uri.Text + "','" + DateTime.Now + "','" + DateTime.Now + "')", connection);
                 cmd.ExecuteNonQuery();
                 connection.Close();
                 txtstatus.Text = "";

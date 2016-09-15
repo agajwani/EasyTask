@@ -32,6 +32,7 @@ namespace test1
                 txtpercat.Text = table.Rows[0]["LocationCatg"].ToString();
                 cbactive.Checked = Convert.ToBoolean(Convert.ToInt32(table.Rows[0]["ActiveStatus"].ToString()));
             }
+            connection.Close();
         }
 
         protected void btncancel_Click(object sender, EventArgs e)
@@ -52,12 +53,13 @@ namespace test1
             }
             else
             {
-                SqlCommand ucmd = new SqlCommand("Update LocationHeader set LocationName = '" + txtmodloc.Text + "',LocationCatg='" + txtpercat.Text + "',ActionUserId ='" + Session["uid"] + "',ActionMenucode='" + uri.Text + "',ActionDate='" + DateTime.Now + "',ActiveStatus='" + cblc + "'where LocationID='" + ddlloc.Text + "'", connection);
+                SqlCommand ucmd = new SqlCommand("Update LocationHeader set LocationName = '" + txtmodloc.Text + "',LocationCatg='" + txtpercat.Text + "',ActionUserId ='" + Session["TUID"] + "',ActionMenucode='" + uri.Text + "',ActionDate='" + DateTime.Now + "',ActiveStatus='" + cblc + "'where LocationID='" + ddlloc.Text + "'", connection);
                 ucmd.ExecuteNonQuery();
                 txtmodloc.Text = "";
                 txtpercat.Text = "";
                 cbactive.Checked = false;
             }
+            connection.Close();
         }
     }
 }

@@ -49,13 +49,14 @@ namespace EasyHelpDesk
             connection.ConnectionString = ConfigurationManager.ConnectionStrings["easytaskconnectionstring"].ConnectionString;
             connection.Open();
             SqlCommand scmd = new SqlCommand("Select userloginid from usersinfo where userloginid ='" + MLDDLuname.Text + "'", connection);
-            Session["uid"] = MLDDLuname.Text;
+            Session["TUID"] = MLDDLuname.Text;
               
             SqlCommand lcmd = new SqlCommand("SP_TRACK_USERLOG", connection);
             lcmd.CommandType = CommandType.StoredProcedure;
-            lcmd.Parameters.AddWithValue("@username", Session["uid"].ToString());
+            lcmd.Parameters.AddWithValue("@username", Session["TUID"].ToString());
             lcmd.Parameters.AddWithValue("@COMMAND", 0);
             lcmd.ExecuteNonQuery();
+            connection.Close();
         }
         protected void usblogin_Click(object sender, EventArgs e)
         {
@@ -78,6 +79,7 @@ namespace EasyHelpDesk
                 {
                     Response.Write("<script>alert('Invalid Username Or Password.')</script>");
                 }
+                connection.Close();
             }
             catch(Exception ex)
             {

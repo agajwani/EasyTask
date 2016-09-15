@@ -57,15 +57,6 @@ public partial class DepartmentMaster {
     protected global::System.Web.UI.WebControls.DropDownList ddldepartcategory;
     
     /// <summary>
-    /// ddllocation control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.DropDownList ddllocation;
-    
-    /// <summary>
     /// btnadd control.
     /// </summary>
     /// <remarks>

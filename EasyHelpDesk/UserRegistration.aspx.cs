@@ -87,13 +87,18 @@ namespace EasyHelpDesk
                     Response.Write("<script>alert('Fill required Information')</script>");
                     urtpass.Focus();
                 }
+                else if (ddldeptrole.SelectedIndex==0)
+                {
+                    Response.Write("<script>alert('Fill required Information')</script>");
+                    ddldeptrole.Focus();
+                }
                 else
                 {
                     string allowms = urcmsl.Checked ? "1" : "0"; 
                     SqlConnection connection = new SqlConnection();
                     connection.ConnectionString = ConfigurationManager.ConnectionStrings["EasyTaskConnectionString"].ConnectionString;
                     connection.Open();
-                    SqlCommand cmd = new SqlCommand("Insert into UserInfo (UserSalutation,UserFirstName,UserOtherName,UserLastName,DeptId,DesignationId,UserMobileNo1,UserMobileNo2,UserTelephone1,UserTelephone2,UserEmailId,UserLoginId,UserLoginPassword,ActionDate,DocumentDate,ActionMenuCode,MasterLogin,ActionUserId) values ('" + DDLsal.Text + "','" + urtfname.Text + "','" + urtmname.Text + "','" + urtlname.Text + "','" + DDLdeptid.Text + "', '" + ddldesg.SelectedIndex + "','" + urtmno1.Text + "','" + urtmno2.Text + "','" + urtph1.Text + "','" + urtph2.Text + "','" + urtemail.Text + "','" + urtuname.Text + "','" + Encrypt(urtpass.Text) + "','" + System.DateTime.Now + "','" + System.DateTime.Now + "','" + uri.Text + "','" + allowms+"','"+Session["Uid"]+"')", connection);
+                    SqlCommand cmd = new SqlCommand("Insert into UserInfo (UserSalutation,UserFirstName,UserOtherName,UserLastName,DeptId,DesignationId,UserMobileNo1,UserMobileNo2,UserTelephone1,UserTelephone2,UserEmailId,UserLoginId,UserLoginPassword,ActionDate,DocumentDate,ActionMenuCode,MasterLogin,ActionUserId) values ('" + DDLsal.Text + "','" + urtfname.Text + "','" + urtmname.Text + "','" + urtlname.Text + "','" + DDLdeptid.Text + "', '" + ddldesg.SelectedIndex + "','" + urtmno1.Text + "','" + urtmno2.Text + "','" + urtph1.Text + "','" + urtph2.Text + "','" + urtemail.Text + "','" + urtuname.Text + "','" + Encrypt(urtpass.Text) + "','" + System.DateTime.Now + "','" + System.DateTime.Now + "','" + uri.Text + "','" + allowms+"','"+Session["TUID"]+"')", connection);
                     cmd.ExecuteNonQuery();
                     connection.Close();
                     urtemail.Text = "";
@@ -111,6 +116,7 @@ namespace EasyHelpDesk
                     DDLsal.SelectedIndex = -1;
                     urcmsl.Checked = false;
                     Response.Write("<script>alert('Sign Up Successfull')</script>");
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -131,9 +137,6 @@ namespace EasyHelpDesk
             Response.Redirect("userdetailview.aspx");
         }
 
-        //protected void urbedit_Click(object sender, EventArgs e)
-        //{
-        //    Response.Redirect("UserEditDtl.aspx");
-        //}
+       
     }
 }

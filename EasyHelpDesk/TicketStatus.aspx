@@ -7,9 +7,10 @@
     <title>Ticket Status</title>
     <style>
          body {
-             background:rgb(12, 97, 33);
+             /*background:rgb(12, 97, 33);
              background-repeat: no-repeat;
-             background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+             background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+             background-color:#f8f8f8;
              height:100%;
         }
         #Head {
@@ -71,7 +72,7 @@
 <body>
     <div id="Head" class="Head"><asp:Label ID="TicStatus" runat="server" Text="Ticket Status " Font-Bold="true"></asp:Label>
         <strong class="session">
-            <%=Session["UID"].ToString() %>
+            <%=Session["TUID"].ToString() %>
         </strong>
     </div>
      <asp:Label ID="uri" runat="server" Text="TicketStatusMaster" Visible="false"></asp:Label>

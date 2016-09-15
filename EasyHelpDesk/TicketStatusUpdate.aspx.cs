@@ -31,18 +31,15 @@ namespace test1
             connection.Open();
             if (txtmodstatus.Text == "")
             {
-                SqlCommand cmdact = new SqlCommand("Update TicketStatusHeader Set Activestatus='" + active + "',Actionuserid='" + Session["uid"].ToString() + "',actiondate='" + System.DateTime.Now + "',actionmenucode='" + uri.Text + "' where tckstatus = '" + ddlstatus.Text + "'", connection);
+                SqlCommand cmdact = new SqlCommand("Update TicketStatusHeader Set Activestatus='" + active + "',Actionuserid='" + Session["TUID"].ToString() + "',actiondate='" + System.DateTime.Now + "',actionmenucode='" + uri.Text + "' where tckstatus = '" + ddlstatus.Text + "'", connection);
                 cmdact.ExecuteNonQuery();
                 Response.Write("<script>alert('Update Successful')</script>");
                 Response.Redirect("TicketStatusUpdate.aspx");
             }
-            //else if (txtmodstatus.Text == "")
-            //{
-            //    Response.Write("<script>alert('Please Fill Required Information to Update')");
-            //}
+            
             else
             {
-                SqlCommand cmd = new SqlCommand("Update TicketStatusHeader Set TckStatus='" + txtmodstatus.Text + "',Actionuserid='" + Session["uid"].ToString() + "',actiondate='" + System.DateTime.Now + "',actionmenucode='" + uri.Text + "',Activestatus='" + active + "' where tckstatus = '" + ddlstatus.Text + "'", connection);
+                SqlCommand cmd = new SqlCommand("Update TicketStatusHeader Set TckStatus='" + txtmodstatus.Text + "',Actionuserid='" + Session["TUID"].ToString() + "',actiondate='" + System.DateTime.Now + "',actionmenucode='" + uri.Text + "',Activestatus='" + active + "' where tckstatus = '" + ddlstatus.Text + "'", connection);
                 if (txtmodstatus.Text != "")
                 {
                     cmd.ExecuteNonQuery();
@@ -56,6 +53,7 @@ namespace test1
                 {
                     Response.Write("<script>alert('Please Fill Required Information to Update')");
                 }
+                connection.Close();
             }
         
         }

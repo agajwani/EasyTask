@@ -33,12 +33,13 @@ public partial class DesignationMaster : System.Web.UI.Page
                 con.ConnectionString=ConfigurationManager.ConnectionStrings["EasyTaskConnectionString"].ConnectionString;
                 con.Open();
                 //Response.Write("<script>alert('Designation Sussesfully added')</script>");
-                SqlCommand cmd = new SqlCommand("INSERT into Designation (DesignationName,ActionMenucode,ActionDate,DocumentDate,ActionUserId)values ('" + txtdesination.Text+"','"+Designation.Text+"','"+System.DateTime.Now+"','"+System.DateTime.Now+"','"+Session["UID"]+"')",con);
+                SqlCommand cmd = new SqlCommand("INSERT into Designation (DesignationName,ActionMenucode,ActionDate,DocumentDate,ActionUserId)values ('" + txtdesination.Text+"','"+Designation.Text+"','"+System.DateTime.Now+"','"+System.DateTime.Now+"','"+Session["TUID"]+"')",con);
                 cmd.ExecuteNonQuery();
                 con.Close();
                 txtdesination.Text = "";
                 Response.Write("<script>alert('Designation Sussesfully added')</script>");
                 txtdesination.Focus();
+                con.Close();
             }
         }
         catch (Exception)

@@ -44,13 +44,16 @@ namespace EasyHelpDesk
                     urtemail.Text = table.Rows[0][11].ToString();
                     uetdesg.Text = table.Rows[0][6].ToString();
                     uetdept.Text = table.Rows[0][5].ToString();
+                    ddldeptrole.Items.Add(table.Rows[0][21].ToString());
                     urcmsl.Checked = Convert.ToBoolean(Convert.ToInt32(table.Rows[0][20].ToString()));
                     cbinactive.Checked = Convert.ToBoolean(Convert.ToInt32(table.Rows[0][19].ToString()));
+                    urcsr.Checked = Convert.ToBoolean(Convert.ToInt32(table.Rows[0][22].ToString()));
                 }
                 else
                 {
 
                 }
+                connection.Close();
             }
                 
                 {
@@ -80,7 +83,8 @@ namespace EasyHelpDesk
                         uetdesg0.Text= (table3.Rows[0]["DesignationName"].ToString());
 
 
-                    } 
+                    }
+                    connection2.Close();
                 } 
             }
             }
@@ -130,16 +134,21 @@ namespace EasyHelpDesk
                 Response.Write("<script>alert('Please Fill all required Field.')</script>");
                 urtuname.Focus();
             }
+            else if(ddldeptrole.SelectedIndex==0)
+            {
+                Response.Write("<script>alert('Please Assign Defalult Role To User Select Cannot Be Default Role')</script>");
+            }
             else
             {
 
                 
                 string masl = urcmsl.Checked ? "1" : "0";
                 string actstat = cbinactive.Checked ? "1" : "0";
+                string userrole = urcsr.Checked ? "1" : "0";
                 SqlConnection connectionupdate = new SqlConnection();
                 connectionupdate.ConnectionString = ConfigurationManager.ConnectionStrings["easytaskconnectionstring"].ConnectionString;
                 connectionupdate.Open();
-                SqlCommand cmdupdate = new SqlCommand("Update UserInfo Set UserSalutation = '" + ddlsal.Text + "',UserFirstName='" + urtfname.Text + "',UserOtherName = '" + urtmname.Text + "',UserLastName = '" + urtlname.Text + "',DeptId='" + ddldept.Text + "',DesignationId='" + ddldesg.Text + "',UserMobileNo1='" + urtmno1.Text + "',UserMobileNo2='" + urtmno2.Text + "',UserTelephone1='" + urtph1.Text + "',UserTelephone2='" + urtph2.Text + "',UserEmailId='" + urtemail.Text + "',UserLoginId='" + urtuname.Text + "',ActionDate= '" + System.DateTime.Now+ "',ActiveStatus='" + actstat + "',MasterLogin='" + masl + "',ActionUserId='" + Session["Uid"] + "',ActionMenuCode='"+uri.Text+"' where userid = '" + urtuserid.Text+ "'", connectionupdate);
+                SqlCommand cmdupdate = new SqlCommand("Update UserInfo Set UserSalutation = '" + ddlsal.Text + "',UserFirstName='" + urtfname.Text + "',UserOtherName = '" + urtmname.Text + "',UserLastName = '" + urtlname.Text + "',DeptId='" + ddldept.Text + "',DesignationId='" + ddldesg.Text + "',UserMobileNo1='" + urtmno1.Text + "',UserMobileNo2='" + urtmno2.Text + "',UserTelephone1='" + urtph1.Text + "',UserTelephone2='" + urtph2.Text + "',UserEmailId='" + urtemail.Text + "',UserLoginId='" + urtuname.Text + "',ActionDate= '" + System.DateTime.Now+ "',ActiveStatus='" + actstat + "',MasterLogin='" + masl + "',ActionUserId='" + Session["TUID"] + "',DefaultRole='" + ddldeptrole.Text + "',AllowSwitchRole='"+userrole+"',ActionMenuCode='" + uri.Text+"' where userid = '" + urtuserid.Text+ "'", connectionupdate);
                 cmdupdate.ExecuteNonQuery();
                 connectionupdate.Close();
                 urtemail.Text = "";
@@ -157,7 +166,7 @@ namespace EasyHelpDesk
                 urcmsl.Checked = false;
                 cbinactive.Checked = false;
                 Response.Write("<script>alert('Update Successfull')</script>");
-                //Response.Redirect("userdetailview.aspx");
+                connectionupdate.Close();
             }
         }
     }

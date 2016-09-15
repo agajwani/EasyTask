@@ -30,7 +30,7 @@ public partial class SalutaionMaster : System.Web.UI.Page
                 con.ConnectionString = ConfigurationManager.ConnectionStrings["EasyTaskConnectionString"].ConnectionString;
                 con.Open();
                 //Response.Write("<script>alert('sucessfull')</script>");
-                SqlCommand cmd = new SqlCommand("insert into SalutationHeader (SalutationName,GenderCode,ActionMenucode,ActionDate,DocumentDate,ActionUSerId) VALUES ('" + txtsalutation.Text+"','"+ddlgender.Text+"','"+usercode.Text+"','"+System.DateTime.Now+"','"+System.DateTime.Now+"','"+Session["Uid"]+"')", con);
+                SqlCommand cmd = new SqlCommand("insert into SalutationHeader (SalutationName,GenderCode,ActionMenucode,ActionDate,DocumentDate,ActionUSerId) VALUES ('" + txtsalutation.Text+"','"+ddlgender.Text+"','"+usercode.Text+"','"+System.DateTime.Now+"','"+System.DateTime.Now+"','"+Session["TUID"]+"')", con);
                 cmd.ExecuteNonQuery();
                 con.Close();
                 txtsalutation.Text = "";

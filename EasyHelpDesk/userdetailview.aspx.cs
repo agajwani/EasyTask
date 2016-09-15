@@ -34,7 +34,7 @@ namespace EasyHelpDesk
             SqlConnection connection = new SqlConnection();
             connection.ConnectionString = ConfigurationManager.ConnectionStrings["easytaskconnectionstring"].ConnectionString;
             connection.Open();
-            SqlCommand cmd = new SqlCommand("SELECT  dbo.UserInfo.UserSalutation AS [Salutation],dbo.UserInfo.UserFirstName AS[First Name],dbo.UserInfo.UserOtherName AS[Middle Name],dbo.UserInfo.UserLastName AS[Last Name],dbo.Department.DeptName AS[Dept Name],dbo.Designation.DesignationName AS[Designation Name],dbo.UserInfo.UserMobileNo1 AS[Mobile No],dbo.UserInfo.UserTelephone1 AS[Telephone],dbo.UserInfo.UserEmailId AS[Email Id],dbo.UserInfo.UserLoginId AS[Username],dbo.UserInfo.UserIsLocked AS[User Locked],dbo.UserInfo.DocumentDate AS[Created Date],dbo.UserInfo.ActiveStatus as [Active Status],dbo.UserInfo.MasterLogin as [Master Access Allowed] FROM dbo.Department INNER JOIN dbo.UserInfo ON dbo.UserInfo.DeptId = dbo.Department.DeptId INNER JOIN dbo.Designation ON dbo.Designation.DesignationId = dbo.UserInfo.DesignationId", connection);
+            SqlCommand cmd = new SqlCommand("SELECT dbo.UserInfo.UserLoginId AS[Username],dbo.UserInfo.UserSalutation AS [Salutation],dbo.UserInfo.UserFirstName AS[First Name],dbo.UserInfo.UserOtherName AS[Middle Name],dbo.UserInfo.UserLastName AS[Last Name],dbo.Department.DeptName AS[Dept Name],dbo.Designation.DesignationName AS[Designation Name],dbo.UserInfo.UserMobileNo1 AS[Mobile No],dbo.UserInfo.UserTelephone1 AS[Telephone],dbo.UserInfo.UserEmailId AS[Email Id],dbo.UserInfo.UserIsLocked AS[User Locked],dbo.UserInfo.DocumentDate AS[Created Date],dbo.UserInfo.ActiveStatus as [Active Status],dbo.UserInfo.MasterLogin as [Master Access Allowed] FROM dbo.Department INNER JOIN dbo.UserInfo ON dbo.UserInfo.DeptId = dbo.Department.DeptId INNER JOIN dbo.Designation ON dbo.Designation.DesignationId = dbo.UserInfo.DesignationId", connection);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable table = new DataTable();
             adapter.Fill(table);
@@ -42,8 +42,17 @@ namespace EasyHelpDesk
             {
                 vgdv.DataSource = table;
                 vgdv.DataBind();
+                foreach (GridViewRow row in vgdv.Rows)
+                {
+                    string val = row.Cells[0].Text;
+                    row.Cells[0].Text = "";
+                    LinkButton btn = new LinkButton();
+                    btn.Text = val;
+                    btn.PostBackUrl = "~/usereditdtl.aspx?id=" + val;
+                    row.Cells[0].Controls.Add(btn);
+                }
             }
-
+            connection.Close();
         }
 
         protected void vgdv_RowCreated(object sender,System.Web.UI.WebControls.GridViewRowEventArgs e)
@@ -61,7 +70,7 @@ namespace EasyHelpDesk
             SqlConnection connection = new SqlConnection();
             connection.ConnectionString = ConfigurationManager.ConnectionStrings["easytaskconnectionstring"].ConnectionString;
             connection.Open();
-            SqlCommand cmd = new SqlCommand("Select dbo.UserInfo.UserSalutation AS [Salutation] ,dbo.UserInfo.UserFirstName AS[First Name],dbo.UserInfo.UserOtherName AS[Middle Name],dbo.UserInfo.UserLastName AS[Last Name],dbo.Department.DeptName AS[Dept Name],dbo.Designation.DesignationName AS[Designation Name],dbo.UserInfo.UserMobileNo1 AS[Mobile No],dbo.UserInfo.UserTelephone1 AS[Telephone],dbo.UserInfo.UserEmailId AS[Email Id],dbo.UserInfo.UserLoginId AS[Username],dbo.UserInfo.UserIsLocked AS[User Locked],dbo.UserInfo.DocumentDate AS[Created Date],dbo.UserInfo.ActiveStatus as [Active Status],dbo.UserInfo.MasterLogin as [Master Access Allowed] FROM  dbo.Department INNER JOIN dbo.UserInfo ON dbo.UserInfo.DeptId = dbo.Department.DeptId INNER JOIN dbo.Designation ON dbo.Designation.DesignationId = dbo.UserInfo.DesignationId where " + ddlfindlist.SelectedValue + "='"+ftdata.Text+"'", connection);
+            SqlCommand cmd = new SqlCommand("Select dbo.UserInfo.UserLoginId AS[Username],dbo.UserInfo.UserSalutation AS [Salutation] ,dbo.UserInfo.UserFirstName AS[First Name],dbo.UserInfo.UserOtherName AS[Middle Name],dbo.UserInfo.UserLastName AS[Last Name],dbo.Department.DeptName AS[Dept Name],dbo.Designation.DesignationName AS[Designation Name],dbo.UserInfo.UserMobileNo1 AS[Mobile No],dbo.UserInfo.UserTelephone1 AS[Telephone],dbo.UserInfo.UserEmailId AS[Email Id],dbo.UserInfo.UserIsLocked AS[User Locked],dbo.UserInfo.DocumentDate AS[Created Date],dbo.UserInfo.ActiveStatus as [Active Status],dbo.UserInfo.MasterLogin as [Master Access Allowed] FROM  dbo.Department INNER JOIN dbo.UserInfo ON dbo.UserInfo.DeptId = dbo.Department.DeptId INNER JOIN dbo.Designation ON dbo.Designation.DesignationId = dbo.UserInfo.DesignationId where " + ddlfindlist.SelectedValue + "='"+ftdata.Text+"'", connection);
             SqlDataAdapter adapter = new SqlDataAdapter (cmd);
             DataTable table = new DataTable();
             adapter.Fill(table);
@@ -69,8 +78,18 @@ namespace EasyHelpDesk
             {
                 vgdv.DataSource = table;
                 vgdv.DataBind();
+                foreach (GridViewRow row in vgdv.Rows)
+                {
+                    string val = row.Cells[0].Text;
+                    row.Cells[0].Text = "";
+                    LinkButton btn = new LinkButton();
+                    btn.Text = val;
+                    btn.PostBackUrl = "~/usereditdtl.aspx?id=" + val;
+                    row.Cells[0].Controls.Add(btn);
+                }
             }
-            ftdata.Text = "";  
+            ftdata.Text = "";
+            connection.Close();
         }
 
         protected void fbrefresh_Click(object sender, EventArgs e)
@@ -78,7 +97,7 @@ namespace EasyHelpDesk
             SqlConnection connection = new SqlConnection();
             connection.ConnectionString = ConfigurationManager.ConnectionStrings["easytaskconnectionstring"].ConnectionString;
             connection.Open();
-            SqlCommand cmd = new SqlCommand("SELECT  dbo.UserInfo.UserSalutation AS [Salutation],dbo.UserInfo.UserFirstName AS[First Name],dbo.UserInfo.UserOtherName AS[Middle Name],dbo.UserInfo.UserLastName AS[Last Name],dbo.Department.DeptName AS[Dept Name],dbo.Designation.DesignationName AS[Designation Name],dbo.UserInfo.UserMobileNo1 AS[Mobile No],dbo.UserInfo.UserTelephone1 AS[Telephone],dbo.UserInfo.UserEmailId AS[Email Id],dbo.UserInfo.UserLoginId AS[Username],dbo.UserInfo.UserIsLocked AS[User Locked],dbo.UserInfo.DocumentDate AS[Created Date],dbo.UserInfo.ActiveStatus as [Active Status],dbo.UserInfo.MasterLogin as [Master Access Allowed] FROM dbo.Department INNER JOIN dbo.UserInfo ON dbo.UserInfo.DeptId = dbo.Department.DeptId INNER JOIN dbo.Designation ON dbo.Designation.DesignationId = dbo.UserInfo.DesignationId", connection);
+            SqlCommand cmd = new SqlCommand("SELECT dbo.UserInfo.UserLoginId AS[Username], dbo.UserInfo.UserSalutation AS [Salutation],dbo.UserInfo.UserFirstName AS[First Name],dbo.UserInfo.UserOtherName AS[Middle Name],dbo.UserInfo.UserLastName AS[Last Name],dbo.Department.DeptName AS[Dept Name],dbo.Designation.DesignationName AS[Designation Name],dbo.UserInfo.UserMobileNo1 AS[Mobile No],dbo.UserInfo.UserTelephone1 AS[Telephone],dbo.UserInfo.UserEmailId AS[Email Id],dbo.UserInfo.UserIsLocked AS[User Locked],dbo.UserInfo.DocumentDate AS[Created Date],dbo.UserInfo.ActiveStatus as [Active Status],dbo.UserInfo.MasterLogin as [Master Access Allowed] FROM dbo.Department INNER JOIN dbo.UserInfo ON dbo.UserInfo.DeptId = dbo.Department.DeptId INNER JOIN dbo.Designation ON dbo.Designation.DesignationId = dbo.UserInfo.DesignationId", connection);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable table = new DataTable();
             adapter.Fill(table);
@@ -86,7 +105,17 @@ namespace EasyHelpDesk
             {
                 vgdv.DataSource = table;
                 vgdv.DataBind();
+                foreach (GridViewRow row in vgdv.Rows)
+                {
+                    string val = row.Cells[0].Text;
+                    row.Cells[0].Text = "";
+                    LinkButton btn = new LinkButton();
+                    btn.Text = val;
+                    btn.PostBackUrl = "~/usereditdtl.aspx?id=" + val;
+                    row.Cells[0].Controls.Add(btn);
+                }
             }
+            connection.Close();
         }
 
         protected void Fbcancle_Click(object sender, EventArgs e)

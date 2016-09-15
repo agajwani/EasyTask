@@ -60,6 +60,7 @@ namespace EasyHelpDesk
                 fgtpass.Text = table.Rows[0][("UserLoginPassword")].ToString();
                 fgtpass2.Text = Decrypt(fgtpass.Text);//.ToString();
             }
+            connectoin.Close();
 
         }
 

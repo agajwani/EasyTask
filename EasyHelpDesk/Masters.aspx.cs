@@ -12,4 +12,9 @@ public partial class _Default : System.Web.UI.Page
        
 
     }
+
+    protected void tadblogout_Click(object sender, ImageClickEventArgs e)
+    {
+        Response.Redirect("Login.aspx");
+    }
 }

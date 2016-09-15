@@ -9,8 +9,9 @@
         body{
             /*background:#c1bdba;*/
             height: 100%;
-    background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+    /*background-repeat: no-repeat;
+    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+    background:#f8f8f8;
                }
         #BACK {
             /*width: 499px;*/
@@ -83,6 +84,13 @@
 }
     </style>
     <script type="text/javascript">
+        function NumberOnly() {
+            var AsciiValue = event.keyCode
+            if ((AsciiValue >= 48 && AsciiValue <= 57) || (AsciiValue == 8 || AsciiValue == 127))
+                event.returnValue = true;
+            else
+                event.returnValue = false;
+        }
         history.forward();
 </script>
 </head>
@@ -91,7 +99,7 @@
     <div id="BACK" class="backc">
     
         Sign Up For EasyTask.
-       <strong class="session"> <%=Session["Uid"].ToString() %> </strong>
+       <strong class="session"> <%=Session["TUid"].ToString() %> </strong>
     </div>
         <br />
         <br />
@@ -142,18 +150,25 @@
             <br />
             <br />
             Designation&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="ddldesg" CssClass="infot" ToolTip="Selet Designation" runat="server" Width="237px" DataSourceID="dsdesignation" DataTextField="DesignationName" DataValueField="DesignationId">
-            </asp:DropDownList>
-              <asp:SqlDataSource ID="dsdesignation" runat="server" ConnectionString="<%$ ConnectionStrings:EasyTaskConnectionString %>" SelectCommand="SELECT [DesignationName], [DesignationId] FROM [Designation]"></asp:SqlDataSource>
-              <br />
+            </asp:DropDownList> &nbsp;&nbsp;<asp:SqlDataSource ID="dsdesignation" runat="server" ConnectionString="<%$ ConnectionStrings:EasyTaskConnectionString %>" SelectCommand="SELECT [DesignationName], [DesignationId] FROM [Designation]"></asp:SqlDataSource>
+            Default Role&nbsp;&nbsp;<asp:DropDownList ID="ddldeptrole" CssClass="infot" ToolTip="Selet Departmental role" runat="server" Width="237px" >
+                <asp:ListItem>Select</asp:ListItem>
+                <asp:ListItem>Requester</asp:ListItem>
+                <asp:ListItem>Service Agent</asp:ListItem>
+                <asp:ListItem>Departmental Manager</asp:ListItem>
+                <asp:ListItem>Global Manager</asp:ListItem>
+            </asp:DropDownList>    
+            &nbsp;&nbsp;&nbsp;    
             <br />
             <br />
-            Mobile No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="urtmno1" CssClass="infot"  ToolTip="Fill Your Mobile Number" runat="server" TextMode="Phone"></asp:TextBox>
-            &nbsp; Mobile No2 <asp:TextBox ID="urtmno2" CssClass="infot"  ToolTip="Fill Your Mobile Number" runat="server" TextMode="Phone"></asp:TextBox>
+            <br />
+            Mobile No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="urtmno1" CssClass="infot"  ToolTip="Fill Your Mobile Number" onkeypress="Numberonly()" MaxLength="12" runat="server" TextMode="Phone"></asp:TextBox>
+            &nbsp; Extn No <asp:TextBox ID="urtmno2" CssClass="infot"  ToolTip="Fill Your Mobile Number" onkeypress="Numberonly()" MaxLength="12" runat="server" TextMode="Phone"></asp:TextBox>
             <br />
             <br />
             <br />
-            Phone No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="urtph1" CssClass="infot"  ToolTip="Fill Your Phone Number" runat="server" TextMode="Phone"></asp:TextBox>
-            &nbsp; Phone No2&nbsp; <asp:TextBox ID="urtph2" CssClass="infot"  ToolTip="Fill Your Phone Number" runat="server" TextMode="Phone"></asp:TextBox>
+            Phone No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="urtph1" CssClass="infot"  ToolTip="Fill Your Phone Number" onkeypress="Numberonly()" MaxLength="12" runat="server" TextMode="Phone"></asp:TextBox>
+            &nbsp; Phone No2&nbsp; <asp:TextBox ID="urtph2" CssClass="infot"  ToolTip="Fill Your Phone Number" runat="server" onkeypress="Numberonly()" MaxLength="12" TextMode="Phone"></asp:TextBox>
             <br />
             <br />
             <br />
@@ -164,7 +179,8 @@
             <br />
             <br />
             Username&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="urtuname" CssClass="infot"  ToolTip="This Is Required Feild" runat="server"></asp:TextBox>
-            &nbsp;&nbsp; Password&nbsp; <asp:TextBox ID="urtpass" CssClass="infot"  ToolTip="This Is Required Feild" runat="server" TextMode="Password"></asp:TextBox>
+            &nbsp;&nbsp; Password&nbsp; <asp:TextBox ID="urtpass" CssClass="infot"  ToolTip="This Is Required Feild"  runat="server" TextMode="Password"></asp:TextBox>
+            <asp:RegularExpressionValidator ID="passval" runat="server" ErrorMessage="Password Must Be At Least 6 Characters" ControlToValidate="urtpass" ValidationExpression="^[a-zA-Z0-9\s]{6}$"></asp:RegularExpressionValidator>
             
         </div>
     </form>

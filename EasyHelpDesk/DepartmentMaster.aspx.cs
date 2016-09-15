@@ -35,12 +35,13 @@ public partial class DepartmentMaster : System.Web.UI.Page
                con.ConnectionString= ConfigurationManager.ConnectionStrings["EasyTaskConnectionString"].ConnectionString;
                con.Open();
                
-                SqlCommand cmd = new SqlCommand("insert into Department (DeptName,DeptCategory,ParentDeptId,ActionMenucode,ActionDate,DocumentDate,ActionUserId) VALUES ('" + txtdepartment.Text + "','" + ddldepartcategory.Text + "','"+ddllocation.Text +"','" + Department.Text + "','" + System.DateTime.Now + "','" + System.DateTime.Now + "','"+Session["Uid"]+"')", con);
+                //SqlCommand cmd = new SqlCommand("insert into Department (DeptName,DeptCategory,ParentDeptId,ActionMenucode,ActionDate,DocumentDate,ActionUserId) VALUES ('" + txtdepartment.Text + "','" + ddldepartcategory.Text + "','"+ddllocation.Text +"','" + Department.Text + "','" + System.DateTime.Now + "','" + System.DateTime.Now + "','"+Session["TUID"]+"')", con);
+                SqlCommand cmd = new SqlCommand("insert into Department (DeptName,DeptCategory,ActionMenucode,ActionDate,DocumentDate,ActionUserId) VALUES ('" + txtdepartment.Text + "','" + ddldepartcategory.Text + "','" + Department.Text + "','" + System.DateTime.Now + "','" + System.DateTime.Now + "','"+Session["TUID"]+"')", con);
                 cmd.ExecuteNonQuery();
                 con.Close();
                 txtdepartment.Text = "";
                 ddldepartcategory.SelectedIndex = -1;
-                ddllocation.SelectedIndex = -1;
+                //ddllocation.SelectedIndex = -1;
                 Response.Write("<script>alert('Details added successfully')</script>");
             }
 

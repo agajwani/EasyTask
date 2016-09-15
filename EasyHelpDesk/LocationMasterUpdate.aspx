@@ -7,10 +7,11 @@
     <title>Location Master Update</title>
     <style>
         body {
-             background:rgb(12, 97, 33);
+             /*background:rgb(12, 97, 33);
              background-repeat: no-repeat;
-             background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+             background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
              height:100%;
+             background:#f8f8f8;
         }
         #Head {
              padding:15px;
@@ -70,7 +71,7 @@
 </head>
 <body>
     <div id="Head" class="Head"><asp:Label ID="Location" runat="server" Text="Location Master Update" Font-Bold="true"></asp:Label>
-        <strong class="session"><%=Session["Uid"].ToString() %></strong>
+        <strong class="session"><%=Session["TUID"].ToString() %></strong>
     </div>
     <br />
     <br />

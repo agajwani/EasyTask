@@ -18,12 +18,13 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=4.5.7.1213, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp, Version=5.5.9.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.9\lib\itextsharp.dll</HintPath>
       <Private>True</Private>
@@ -80,6 +85,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -99,7 +107,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Company.aspx" />
+    <Content Include="images\1473172417_gear.png" />
+    <Content Include="images\Aqua-Switch-User-icon.png" />
+    <Content Include="AssignTicket.aspx" />
     <Content Include="ChangePassword.aspx" />
+    <Content Include="Dashboard.aspx" />
     <Content Include="DepartmentMaster.aspx" />
     <Content Include="DepartmentUpdate.aspx" />
     <Content Include="DesignationMaster.aspx" />
@@ -124,12 +137,14 @@
     <Content Include="js\transition.js" />
     <Content Include="LocationMaster.aspx" />
     <Content Include="LocationMasterUpdate.aspx" />
+    <Content Include="images\Logout-icon.png" />
     <Content Include="Main.aspx" />
     <Content Include="MasterForgetPassword.aspx" />
     <Content Include="MasterLogin.css" />
     <Content Include="masterLogin.js" />
     <Content Include="Masters.aspx" />
     <Content Include="MastersLogin.aspx" />
+    <Content Include="modalpopup.css" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -143,6 +158,9 @@
     <Content Include="SalutationMasterUpdate.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="SublocationMaster.aspx" />
+    <Content Include="SublocationUpdate.aspx" />
+    <Content Include="switch.htm" />
     <Content Include="themes\bootstrap.min.css" />
     <Content Include="themes\Bootstrap\bootstrap-theme.css" />
     <Content Include="themes\Bootstrap\bootstrap-theme.min.css" />
@@ -156,10 +174,15 @@
     <Content Include="themes\sb-admin-2.css" />
     <Content Include="themes\styles.css" />
     <Content Include="themes\timeline.css" />
+    <Content Include="TicketAssignedDtl.aspx" />
+    <Content Include="TicketAssignUpdate.aspx" />
+    <Content Include="TicketDetails.aspx" />
+    <Content Include="TicketDetailView.aspx" />
     <Content Include="TicketStatus.aspx" />
     <Content Include="TicketStatusUpdate.aspx" />
     <Content Include="TicketType.aspx" />
     <Content Include="TicketTypeUpdate.aspx" />
+    <Content Include="UnassignTicket.aspx" />
     <Content Include="userdetailview.aspx" />
     <Content Include="UserEditdtl.aspx" />
     <Content Include="UserRegistration.aspx" />
@@ -168,12 +191,33 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssignTicket.aspx.cs">
+      <DependentUpon>AssignTicket.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssignTicket.aspx.designer.cs">
+      <DependentUpon>AssignTicket.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ChangePassword.aspx.designer.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Company.aspx.cs">
+      <DependentUpon>Company.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company.aspx.designer.cs">
+      <DependentUpon>Company.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="DepartmentMaster.aspx.cs">
       <DependentUpon>DepartmentMaster.aspx</DependentUpon>
@@ -278,6 +322,48 @@
     <Compile Include="SalutationMasterUpdate.aspx.designer.cs">
       <DependentUpon>SalutationMasterUpdate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SublocationMaster.aspx.cs">
+      <DependentUpon>SublocationMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SublocationMaster.aspx.designer.cs">
+      <DependentUpon>SublocationMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SublocationUpdate.aspx.cs">
+      <DependentUpon>SublocationUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SublocationUpdate.aspx.designer.cs">
+      <DependentUpon>SublocationUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TicketAssignedDtl.aspx.cs">
+      <DependentUpon>TicketAssignedDtl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TicketAssignedDtl.aspx.designer.cs">
+      <DependentUpon>TicketAssignedDtl.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TicketAssignUpdate.aspx.cs">
+      <DependentUpon>TicketAssignUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TicketAssignUpdate.aspx.designer.cs">
+      <DependentUpon>TicketAssignUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TicketDetails.aspx.cs">
+      <DependentUpon>TicketDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TicketDetails.aspx.designer.cs">
+      <DependentUpon>TicketDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TicketDetailView.aspx.cs">
+      <DependentUpon>TicketDetailView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TicketDetailView.aspx.designer.cs">
+      <DependentUpon>TicketDetailView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TicketStatus.aspx.cs">
       <DependentUpon>TicketStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -305,6 +391,13 @@
     </Compile>
     <Compile Include="TicketTypeUpdate.aspx.designer.cs">
       <DependentUpon>TicketTypeUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UnassignTicket.aspx.cs">
+      <DependentUpon>UnassignTicket.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UnassignTicket.aspx.designer.cs">
+      <DependentUpon>UnassignTicket.aspx</DependentUpon>
     </Compile>
     <Compile Include="userdetailview.aspx.cs">
       <DependentUpon>userdetailview.aspx</DependentUpon>
@@ -393,6 +486,9 @@
   <ItemGroup>
     <Content Include="js\.jscsrc" />
     <Content Include="js\.jshintrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\EasyTask.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

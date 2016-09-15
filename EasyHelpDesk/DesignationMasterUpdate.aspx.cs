@@ -36,7 +36,7 @@ public partial class DesignationMasterUpdate : System.Web.UI.Page
             SqlConnection con = new SqlConnection();
             con.ConnectionString = ConfigurationManager.ConnectionStrings["EasyTaskConnectionString"].ConnectionString;
             con.Open();
-            SqlCommand cmd = new SqlCommand("UPDATE Designation SET DesignationName='" + txtmodify.Text + "',ActiveStatus='" + allowas + "',ActionDate='" + DateTime.Now + "',ActionMenucode='" + uri.Text + "',ActionUserId='" + Session["uid"] + "' where DesignationName='" + DDLdesignation.Text + "' ", con);
+            SqlCommand cmd = new SqlCommand("UPDATE Designation SET DesignationName='" + txtmodify.Text + "',ActiveStatus='" + allowas + "',ActionDate='" + DateTime.Now + "',ActionMenucode='" + uri.Text + "',ActionUserId='" + Session["TUID"] + "' where DesignationName='" + DDLdesignation.Text + "' ", con);
             cmd.ExecuteNonQuery();
             con.Close();
             DDLdesignation.SelectedIndex = -1;
@@ -59,6 +59,6 @@ public partial class DesignationMasterUpdate : System.Web.UI.Page
         {
             cbactive.Checked = Convert.ToBoolean(Convert.ToInt32(table.Rows[0]["Activestatus"].ToString()));
         }
-       
+        connection.Close();
     }
 }

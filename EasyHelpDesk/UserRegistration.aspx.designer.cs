@@ -157,6 +157,15 @@ namespace EasyHelpDesk {
         protected global::System.Web.UI.WebControls.SqlDataSource dsdesignation;
         
         /// <summary>
+        /// ddldeptrole control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddldeptrole;
+        
+        /// <summary>
         /// urtmno1 control.
         /// </summary>
         /// <remarks>
@@ -227,5 +236,14 @@ namespace EasyHelpDesk {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox urtpass;
+        
+        /// <summary>
+        /// passval control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator passval;
     }
 }
